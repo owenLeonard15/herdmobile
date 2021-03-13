@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-herdmobile-dev-130324-authRole",
+      "UnauthRoleArn": "arn:aws:iam::233937599471:role/amplify-herdmobile-dev-130324-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::233937599471:role/amplify-herdmobile-dev-130324-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-herdmobile-dev-130324-deployment",
+      "UnauthRoleName": "amplify-herdmobile-dev-130324-unauthRole",
+      "StackName": "amplify-herdmobile-dev-130324",
+      "StackId": "arn:aws:cloudformation:us-east-1:233937599471:stack/amplify-herdmobile-dev-130324/7ff37410-792e-11eb-84b7-1266a0dd9289",
+      "AmplifyAppId": "d1bmhy7smbk98w"
+    },
+    "categories": {
+      "auth": {
+        "herdmobilead8b5f21": {}
+      }
+    }
+  }
+}
