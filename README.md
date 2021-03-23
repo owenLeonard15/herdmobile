@@ -8,11 +8,6 @@ Since the application needs to be mobile, the front end framework needs to provi
 
 The above diagram shows the overall system design of the application. The previously discussed React Native component interacts with multiple AWS services managed by AWS Amplify. Amplify is a service which provides the ability to 
 
-Python Flask: The framework to build the backend of the application. Resembles Django. Provides existing templates we can use to show either a list view of restaurants or the detail view of a particular restaurant. Structures the application with MVC pattern. Supports fast and cheap demos during the development phase by providing a built-in database with data directly stored in a database file. Supports basic authentication such as signup and login.
-
-SQLAlchemy: Manages the databases and provides an ORM to easily perform database operations in application logic. Will design data models and perform CRUD operations based on the object relational mapping functionalities it provides. 
-
-
 
 AWS Amplify: A JavaScript library to allow easy access of developers to cloud services. Utilizes cloud services to make our application more scalable and robust. Allows the application to take advantage of various AWS services such as AI and database services, which are crucial for building a recommendation system that is both intelligent and scalable.
 
