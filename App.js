@@ -2,10 +2,15 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 //amplify
-import Amplify from 'aws-amplify';
+import Amplify, {API, graphqlOperation} from 'aws-amplify';
 import config from './aws-exports';
 import { withAuthenticator } from 'aws-amplify-react-native';
-Amplify.configure(config);
+Amplify.configure({
+    ...config,
+    Analytics: {
+        disabled: true,
+    },
+});
 
 //Navigation
 import { createStackNavigator } from '@react-navigation/stack';
@@ -17,6 +22,7 @@ import SplashScreen from './views/Splash'
 import LoginScreen from './views/Auth/Login';
 import SignUpScreen from './views/Auth/SignUp';
 import HomeScreen from './views/Home';
+import MyFriendSearch from './views/MyFriendSearch';
 
 
 
@@ -33,7 +39,8 @@ import HomeScreen from './views/Home';
  * -> Sign Up
  *
  * AppDrawer
- * -> Nothing here yet
+ * -> Home
+ * -> FriendSearch
  */
 
 const Auth = createStackNavigator();
@@ -53,9 +60,19 @@ const AuthStack = () => (
 const Application = createDrawerNavigator();
 const AppDrawer = () => (
     <Application.Navigator 
-        intitialRouteName='Home'
+        initialRouteName='Home'
+        drawerStyle={{
+            backgroundColor: 'white',
+            width: 240
+        }}   
+        drawerContentOptions={{
+            activeBackgroundColor: '#F07167',
+            activeTintColor: '#FFF'
+        }}
+        
     >
-        <Application.Screen name='Home' component={HomeScreen} />
+        <Application.Screen name='Home' component={HomeScreen} options={{ title: 'Home' }} />
+        <Application.Screen name='MyFriendSearch' component={MyFriendSearch} options={{ title: 'My Friends' }}/>
     </Application.Navigator>
 )
 
@@ -91,8 +108,8 @@ const [userToken, setUserToken] = useState("token");
                         ) : (
                             <rootStack.Screen
                                 name='Home'
-                                options={{ headerShown: false }}
                                 component={AppDrawer}
+                                options={{headerShown: false}}
                             />
                         )
                     }
