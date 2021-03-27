@@ -5,6 +5,11 @@ import { StyleSheet, Text, View } from 'react-native'
 const HomeScreen = () => {
     // Store and manage the fetched restaurant list.
     const [restaurantList, setRestaurantList] = useState([]);
+    // Store and manage the location of the current user
+    // Currently are hard-coded values, will fetch them from locating
+    // services or user settings later.
+    const [lat, setLat] = useState(36.1447);
+    const [lon, setLon] = useState(-86.8027);
 
     // Initialize the restaurant list.
     useEffect(() => {
@@ -23,7 +28,8 @@ const HomeScreen = () => {
 
     // Fetch restaurants with Google Places API under the hood.
     const getRestaurantsFromApi = async() => {
-      const res = await fetch('https://i7vva9aayi.execute-api.us-east-2.amazonaws.com/dev/restaurants');
+      const url = 'https://i7vva9aayi.execute-api.us-east-2.amazonaws.com/dev/restaurants?lat=' + lat + "&lon=" + lon;
+      const res = await fetch(url);
       const resJson = await res.json();
       return resJson.items;
     }
