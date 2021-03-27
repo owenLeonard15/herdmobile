@@ -6,6 +6,7 @@ const HomeScreen = () => {
     // Store and manage the fetched restaurant list.
     const [restaurantList, setRestaurantList] = useState([]);
     // Store and manage the location of the current user
+    // Should have at least 4 decimal places to enable nearby search.
     // Currently are hard-coded values, will fetch them from locating
     // services or user settings later.
     const [lat, setLat] = useState(36.1447);
@@ -36,7 +37,10 @@ const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text>Home</Text>
+            <FlatList
+                      data={restaurantList}
+                      renderItem={({item}) => <Text style={styles.item}>{item.name}</Text>}
+                    />
         </View>
     )
 }
