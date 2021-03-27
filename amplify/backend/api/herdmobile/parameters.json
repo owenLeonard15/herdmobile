@@ -1,11 +1,11 @@
 {
-  "AppSyncApiName": "herdmobile",
-  "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false,
-  "AuthCognitoUserPoolId": {
-    "Fn::GetAtt": [
-      "authherdmobilead8b5f21",
-      "Outputs.UserPoolId"
-    ]
-  }
+    "AppSyncApiName": "herdmobile",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authherdmobilead8b5f21",
+            "Outputs.UserPoolId"
+        ]
+    }
 }
