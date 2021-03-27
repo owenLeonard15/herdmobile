@@ -66,6 +66,13 @@ function App(){
 const [loading, setLoading] = useState(false);
 const [userToken, setUserToken] = useState("token");
 
+/**
+const [restaurantList, setRestaurantList] = useState(await getRestaurantsFromApi());
+const [lat, setLat] = useState(36.1447);
+const [lon, setLon] = useState(-86.8027);
+
+componentDidMount()
+*/
   return (
             <NavigationContainer>
                 <rootStack.Navigator>
