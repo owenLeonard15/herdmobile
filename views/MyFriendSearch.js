@@ -1,5 +1,5 @@
 import React from 'react';
-import { Keyboard, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
+import { FlatList, Keyboard, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons'
 import { TextInput } from 'react-native-gesture-handler';
 
@@ -50,16 +50,16 @@ const MyFriendSearch = ({navigation}) => {
         const res = await API.graphql(graphqlOperation(listFollowRelationships, {
             followeeId: followeeId
         }));
-        console.log(res)
-        return res.data.listFollowRelationships !== null
+        console.log(res.data.listFollowRelationships.items)
+        return res.data.listFollowRelationships.items !== null
     }
 
     const listFollowing = async ({followerId}) => {
         const res = await API.graphql(graphqlOperation(listFollowRelationships, {
             followeeId: followerId
         }));
-        console.log(res)
-        return res.data.listFollowRelationships !== null
+        console.log(res.data.listFollowRelationships.items)
+        return res.data.listFollowRelationships.items !== null
     }
 
     const follow = async () => {
@@ -99,7 +99,16 @@ const MyFriendSearch = ({navigation}) => {
         init()
 
     }, []);
+    
+    const Item = ({ title }) => (
+        <View style={styles.item}>
+          <Text style={styles.title}>{title}</Text>
+        </View>
+      );
 
+    const renderItem = ({ item }) => (
+    <Item title={item.title} />
+    );
 
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} accessible={false}>
@@ -139,12 +148,24 @@ const MyFriendSearch = ({navigation}) => {
                         </TouchableOpacity>
                     </View>) 
                     }
-                   
+                    
+                    {followerView ? (
+                        <FlatList
+                            data={followers}
+                            renderItem={renderItem}
+                            keyExtractor={item => item.id}
+                        />
+                    )
+                    : (
+                        <FlatList
+                            data={following}
+                            renderItem={renderItem}
+                            keyExtractor={item => item.id}
+                        />
+                    )}  
                 </View>
-                
             </View>
         </TouchableWithoutFeedback>
-
     )
 }
 

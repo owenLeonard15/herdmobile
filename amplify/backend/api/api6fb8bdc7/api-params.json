@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/restaurants",
+            "lambdaFunction": "herdmobile8403d72e",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "api6fb8bdc7",
+    "apiName": "api6fb8bdc7",
+    "functionArns": [
+        {
+            "lambdaFunction": "herdmobile8403d72e"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-herdmobile-devxingbei-05419-authRole",
+        "unAuthRoleName": "amplify-herdmobile-devxingbei-05419-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "herdmobile8403d72e",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
