@@ -61,8 +61,8 @@ const HomeScreen = () => {
         const addressRow2 = addressRawList[1];
 
         return (
-            <View style={{height: 50, alignItems: 'center', flex: 1, flexDirection: 'row', margin: 10, padding: 10, borderBottomColor: 'white', borderBottomWidth: 1}}>
-                <Image source={pic} style={{width: 45, height: 45}}/>
+            <View style={{height: 150, alignItems: 'center', flex: 1, flexDirection: 'row', margin: 10, padding: 10, borderBottomColor: 'white', borderBottomWidth: 1}}>
+                <Image source={pic} style={{width: 80, height: 80}}/>
                 <View style={styles.textContainer}>
                     <Text style={{fontFamily: 'sans-serif', color: '#624630', fontWeight: 'bold'}}>{restaurantName}</Text>
                     <Text style={styles.textFont}>{categoriesStr}</Text>
