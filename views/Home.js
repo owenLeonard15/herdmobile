@@ -25,8 +25,10 @@ const HomeScreen = ({navigation}) => {
             // Here we extract and store only the data that we want to keep from the list of complete objects
             for (var i = 0; i < resList.length; i++){
                 resArray.push({
-                    title: resList[i].name,
-                    id: resList[i].place_id
+                    name: resList[i].name,
+                    icon: resList[i].icon,
+                    types: resList[i].types,
+                    vicinity: resList[i].vicinity
                 });
             }
             setRestaurantList(resArray);
@@ -121,8 +123,7 @@ const HomeScreen = ({navigation}) => {
             <SafeAreaView style={styles.mainContent}>
                 <FlatList
                     data={restaurantList}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
+                    renderItem={({item}) => addItem(item)}
                 />
             </SafeAreaView>      
         </View>)
