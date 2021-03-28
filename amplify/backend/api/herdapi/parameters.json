@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD:amplify/backend/api/herdapi/parameters.json
   "AppSyncApiName": "herdapi",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
@@ -8,4 +9,15 @@
       "Outputs.UserPoolId"
     ]
   }
+=======
+    "AppSyncApiName": "herdmobile",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authherdmobilead8b5f21",
+            "Outputs.UserPoolId"
+        ]
+    }
+>>>>>>> 807e209e77325655eefd8a2024ae938003de60ca:amplify/backend/api/herdmobile/parameters.json
 }

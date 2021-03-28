@@ -1,20 +1,56 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-herdmobile-dev-130324-authRole",
-      "UnauthRoleArn": "arn:aws:iam::233937599471:role/amplify-herdmobile-dev-130324-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::233937599471:role/amplify-herdmobile-dev-130324-authRole",
-      "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-herdmobile-dev-130324-deployment",
-      "UnauthRoleName": "amplify-herdmobile-dev-130324-unauthRole",
-      "StackName": "amplify-herdmobile-dev-130324",
-      "StackId": "arn:aws:cloudformation:us-east-1:233937599471:stack/amplify-herdmobile-dev-130324/7ff37410-792e-11eb-84b7-1266a0dd9289",
-      "AmplifyAppId": "d1bmhy7smbk98w"
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-herdmobile-dev-130324-authRole",
+            "UnauthRoleArn": "arn:aws:iam::233937599471:role/amplify-herdmobile-dev-130324-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::233937599471:role/amplify-herdmobile-dev-130324-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-herdmobile-dev-130324-deployment",
+            "UnauthRoleName": "amplify-herdmobile-dev-130324-unauthRole",
+            "StackName": "amplify-herdmobile-dev-130324",
+            "StackId": "arn:aws:cloudformation:us-east-1:233937599471:stack/amplify-herdmobile-dev-130324/7ff37410-792e-11eb-84b7-1266a0dd9289",
+            "AmplifyAppId": "d1bmhy7smbk98w"
+        },
+        "categories": {
+            "auth": {
+                "herdmobilead8b5f21": {}
+            }
+        }
     },
-    "categories": {
-      "auth": {
-        "herdmobilead8b5f21": {}
-      }
+    "devtwo": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-herdmobile-devtwo-51112-authRole",
+            "UnauthRoleArn": "arn:aws:iam::622328953177:role/amplify-herdmobile-devtwo-51112-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::622328953177:role/amplify-herdmobile-devtwo-51112-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-herdmobile-devtwo-51112-deployment",
+            "UnauthRoleName": "amplify-herdmobile-devtwo-51112-unauthRole",
+            "StackName": "amplify-herdmobile-devtwo-51112",
+            "StackId": "arn:aws:cloudformation:us-east-1:622328953177:stack/amplify-herdmobile-devtwo-51112/c4d1fe70-8a2d-11eb-bbbe-0e3ca42a281f",
+            "AmplifyAppId": "d1ij5dzeswc4xn"
+        },
+        "categories": {
+            "auth": {
+                "herdmobilead8b5f21": {}
+            }
+        }
+    },
+    "devxingbei": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-herdmobile-devxingbei-05419-authRole",
+            "UnauthRoleArn": "arn:aws:iam::622328953177:role/amplify-herdmobile-devxingbei-05419-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::622328953177:role/amplify-herdmobile-devxingbei-05419-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-herdmobile-devxingbei-05419-deployment",
+            "UnauthRoleName": "amplify-herdmobile-devxingbei-05419-unauthRole",
+            "StackName": "amplify-herdmobile-devxingbei-05419",
+            "StackId": "arn:aws:cloudformation:us-east-1:622328953177:stack/amplify-herdmobile-devxingbei-05419/e11c5ed0-8ec0-11eb-ae4e-12bdd946785e",
+            "AmplifyAppId": "d1ij5dzeswc4xn"
+        },
+        "categories": {
+            "auth": {
+                "herdmobilead8b5f21": {}
+            }
+        }
     }
-  }
 }
