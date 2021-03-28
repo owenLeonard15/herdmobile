@@ -21,7 +21,7 @@ const HomeScreen = () => {
             const resList = await getRestaurantsFromApi();
             setRestaurantList(restaurantList => {
                 for (var i = 0; i < resList.length; i++){
-                    restaurantList.push({name: resList[i].name});
+                    restaurantList.push(resList[i]);
                 }
             })
 
