@@ -39,6 +39,7 @@ const HomeScreen = () => {
       return resJson.items;
     }
 
+    // Render a restaurant item.
     const addItem = (item) => {
         // Get image url.
         const imageUrl = item.icon;
