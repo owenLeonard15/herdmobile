@@ -1,10 +1,10 @@
 import React from 'react';
 import { FlatList, Keyboard, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons'
 import { TextInput } from 'react-native-gesture-handler';
-import { useState, useEffect, useReducer } from 'react';
 
 // Amplify imports
+import { useState, useEffect, useReducer } from 'react';
 import {API, graphqlOperation } from 'aws-amplify';
 import Auth from '@aws-amplify/auth';
 
@@ -126,7 +126,8 @@ const MyFriendSearch = ({navigation}) => {
                         <Text style={{fontWeight: 'bold'}}>Search: </Text>
                         <TextInput
                             style={styles.searchBar}
-                            placeholder="Find a friend"
+                            placeholder="find a friend"
+                            title={"hello"}
                         />
                     </View>
                     { followerView ? (
