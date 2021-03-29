@@ -101,7 +101,7 @@ const HomeScreen = ({navigation}) => {
             })
           .catch((error) => {
               console.error(error);
-           });;
+           });
     }
     
     // Render a restaurant item.
