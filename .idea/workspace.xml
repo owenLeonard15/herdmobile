@@ -26,7 +26,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/restaurant-api" />
+    <property name="last_opened_file_path" value="$USER_HOME$/getFavRes" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -45,13 +45,17 @@
       <screen x="0" y="0" width="1280" height="690" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.690@0.0.1280.690" timestamp="1616833543085" />
-    <state x="421" y="100" key="FileChooserDialogImpl" timestamp="1616835039891">
+    <state x="421" y="100" key="FileChooserDialogImpl" timestamp="1616997666469">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
-    <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.690@0.0.1280.690" timestamp="1616835039891" />
+    <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.690@0.0.1280.690" timestamp="1616997666469" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1616824924944">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.690@0.0.1280.690" timestamp="1616824924944" />
+    <state x="6" y="28" key="new project wizard" timestamp="1616997654108">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state x="6" y="28" key="new project wizard/0.0.1280.690@0.0.1280.690" timestamp="1616997654108" />
   </component>
 </project>

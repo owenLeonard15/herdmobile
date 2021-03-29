@@ -12,6 +12,7 @@ const HomeScreen = ({navigation}) => {
     // Should have at least 4 decimal places to enable nearby search.
     // Currently are hard-coded values, will fetch them from locating
     // services or user settings later.
+    const [currentUser, setCurrentUser] = useState(null);
     const [lat, setLat] = useState(36.1447);
     const [lon, setLon] = useState(-86.8027);
     const [restaurantList, setRestaurantList] = useState([]);
@@ -19,6 +20,9 @@ const HomeScreen = ({navigation}) => {
     // Initialize the restaurant list.
     useEffect(() => {
         const init = async() => {
+            const currentUser = await Auth.currentAuthenticatedUser();
+            setCurrentUser(currentUser);
+
             const resList = await getRestaurantsFromApi();
             let resArray = []
 
@@ -41,6 +45,14 @@ const HomeScreen = ({navigation}) => {
     // Fetch restaurants with Google Places API under the hood.
     const getRestaurantsFromApi = async() => {
       const url = 'https://i7vva9aayi.execute-api.us-east-2.amazonaws.com/dev/restaurants?lat=' + lat + "&lon=" + lon;
+      const res = await fetch(url);
+      const resJson = await res.json();
+      return resJson.items;
+    }
+
+    // Fetch restaurants with Google Places API under the hood.
+    const getFavsOfCurrentUser = async() => {
+      const url = 'https://i7vva9aayi.execute-api.us-east-2.amazonaws.com/dev/getfavres/' + currentUser;
       const res = await fetch(url);
       const resJson = await res.json();
       return resJson.items;
