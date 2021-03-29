@@ -69,7 +69,7 @@ const HomeScreen = ({navigation}) => {
       return resJson.items;
     }
 
-    // Fetch restaurants with Google Places API under the hood.
+    // Fetch favorite restaurants of the current user.
     const getFavsOfCurrentUser = async() => {
       const url = 'https://i7vva9aayi.execute-api.us-east-2.amazonaws.com/dev/getfavres/' + currentUser;
       const res = await fetch(url);
