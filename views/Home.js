@@ -71,7 +71,7 @@ const HomeScreen = ({navigation}) => {
 
     // Fetch favorite restaurants of the current user.
     const getFavsOfCurrentUser = async() => {
-      const url = 'https://i7vva9aayi.execute-api.us-east-2.amazonaws.com/dev/getfavres/' + currentUser;
+      const url = 'https://i7vva9aayi.execute-api.us-east-2.amazonaws.com/dev/getfavres/' + currentUser.username;
       const res = await fetch(url);
       const resJson = await res.json();
       return resJson.items;
