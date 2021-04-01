@@ -147,7 +147,7 @@ const HomeScreen = ({navigation}) => {
 
     // Write the item to FavRestaurantTable when user likes an item.
     const handleHeartPress = (event, item) => {
-        setRestaurantState(restaurantState.set(item.item.name, !restaurantState.get(item.item.name)));
+        setRestaurantState(restaurantState.set(item.item.name, true));
         writeFavRestaurant(item);
     }
 
