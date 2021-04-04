@@ -8,8 +8,8 @@ Since the application needs to be mobile, the front end framework needs to provi
 
 ![alt text](https://xingbei-image-storer.s3.us-east-2.amazonaws.com/final_architecture.png)
 
-The above diagram shows the overall system design of the application. The previously discussed React Native component interacts with multiple AWS services managed by AWS Amplify. Amplify is a service which provides the ability to allow easy access of developers to cloud services. It utilizes cloud services to make our application more scalable and robust. Furthermore, it allows the application to take advantage of various AWS services such as AI and database services, which are crucial for building a recommendation system that is both intelligent and scalable.
+The above diagram shows the overall system design of the application. The previously discussed React Native component interacts with multiple AWS services managed by AWS Amplify. Amplify is a service which provides the ability to build scalable, configurable backend services quickly and seamlessly connect them to the frontend. These characteristics make it possible to integrate multiple different technical components that are necessary for the core functionality of the application. 
 
-In this application, we also use database services of AWS to make the application scalable in storage.
+For example, the application needs to include multiple backend database services which will need to work together to store all data necessary for a social network. Amplify utilizes DynamoDB to seamlessly integrate these services and to make them easily accessible via another AWS service called Elasticsearch. In combination, this allows for scalable data storage that is also easily accessible and quickly retrievable. All of this functionality is abstracted from both users and developers by a GraphQL API. 
 
 
