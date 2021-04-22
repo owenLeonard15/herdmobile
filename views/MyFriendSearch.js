@@ -96,6 +96,7 @@ const MyFriendSearch = ({navigation}) => {
     useEffect(() => {
         const init = async() => {
             const currentUser = await Auth.currentAuthenticatedUser();
+            console.log(currentUser)
             setCurrentUser(currentUser);
 
             //setIsFollowing(await getIsFollowing({followeeId: userId, followerId: currentUser.username}));

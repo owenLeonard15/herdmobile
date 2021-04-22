@@ -105,7 +105,7 @@ const HomeScreen = ({navigation}) => {
     }
     
     // Render a restaurant item.
-    const addItem = (item) => {
+    const renderItem = (item) => {
         // Get image url.
         const imageUrl = item.icon;
         const pic = {
@@ -126,10 +126,10 @@ const HomeScreen = ({navigation}) => {
         const addressRow2 = addressRawList[1];
 
         return (
-            <View style={{height: 150, alignItems: 'center', flex: 1, flexDirection: 'row', margin: 10, padding: 15, borderBottomColor: 'white', borderBottomWidth: 1}}>
+            <View style={{height: 150, width: '100%', alignItems: 'center', flex: 1, flexDirection: 'row', margin: 10, padding: 15, borderBottomColor: 'white', borderBottomWidth: 1}}>
                 <Image source={pic} style={{width: 80, height: 80}}/>
                 <View style={styles.textContainer}>
-                    <Text style={{fontFamily: 'sans-serif', color: '#624630', fontWeight: 'bold'}}>{restaurantName}</Text>
+                    <Text style={{color: '#624630', fontWeight: 'bold'}}>{restaurantName}</Text>
                     <Text style={styles.textFont}>{categoriesStr}</Text>
                 </View>
                 <View style={styles.textContainer}>
@@ -138,7 +138,7 @@ const HomeScreen = ({navigation}) => {
                 </View>
                 <View style={{ alignItems: 'center' }}>
                     <TouchableOpacity onPress={(e) => handleHeartPress(e, {item})}>
-                        <AntDesign name="heart" size={16} color="#FFC0CB" />
+                        <AntDesign name="heart" size={50} color="#FFC0CB" />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -150,16 +150,6 @@ const HomeScreen = ({navigation}) => {
         setRestaurantState(restaurantState.set(item.item.name, true));
         writeFavRestaurant(item);
     }
-
-    const Item = ({ title }) => (
-        <View style={styles.item}>
-          <Text style={styles.title}>{title}</Text>
-        </View>
-      );
-
-    const renderItem = ({ item }) => (
-        <Item title={item.title} />
-    );
     
     
 
@@ -190,8 +180,10 @@ const HomeScreen = ({navigation}) => {
             </View>
             <SafeAreaView style={styles.mainContent}>
                 <FlatList
+                    style={{width: '100%'}}
                     data={restaurantList}
-                    renderItem={({item}) => addItem(item)}
+                    renderItem={({item}) => renderItem(item)}
+                    keyExtractor={item => item.title}
                 />
             </SafeAreaView>      
         </View>)
@@ -234,6 +226,7 @@ const styles = StyleSheet.create({
         padding: 20,
         marginVertical: 1,
         marginHorizontal: 0,
+        width: "100%"
       },
     title: {
         fontSize: 32,
@@ -245,7 +238,6 @@ const styles = StyleSheet.create({
   },
 
   textFont: {
-    fontFamily: 'sans-serif',
     color: '#624630'
   }
 })
