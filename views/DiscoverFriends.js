@@ -44,7 +44,8 @@ const DiscoverFriends = ({navigation}) => {
           followeeId: followeeId,
           followerId: currentUser["username"],
         }));
-        console.log(res)
+        console.log("getIsFollowing: ", res)
+        return true;
         return res.data.getFollowRelationship !== null
         
     }
@@ -59,7 +60,7 @@ const DiscoverFriends = ({navigation}) => {
         }
         const res = await API.graphql(graphqlOperation(createFollowRelationship, {input: input}));
         if(!res.data.createFollowRelationship.erros) setIsFollowing(true);
-        console.log(res);
+        console.log("Follow: ", res);
         return res !== null
     }
     
@@ -73,7 +74,7 @@ const DiscoverFriends = ({navigation}) => {
         const res = await API.graphql(graphqlOperation(deleteFollowRelationship,{input: input}));
 
         if(!res.data.deleteFollowRelationship.erros) setIsFollowing(false);
-        console.log(res)
+        console.log("Unfollow: ", res)
         return res !== null
     }
 
@@ -139,7 +140,9 @@ const DiscoverFriends = ({navigation}) => {
       );
 
     const renderUserList = ({ item }) => (
-        <Item userId={item["Username"]} following={getIsFollowing(item["Username"])} />
+        <Item userId={item["Username"]} following={false} />
+        // <Item userId={item["Username"]} following={getIsFollowing(item["Username"])} />
+
     );
     
 
