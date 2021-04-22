@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a85953e6-6cb6-4b10-998d-73a35a73fc07" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/Home.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +46,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../restaurant-api" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../getFavRes" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -39,18 +60,37 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616833543085">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.690@0.0.1280.690" timestamp="1616833543085" />
-    <state x="421" y="100" key="FileChooserDialogImpl" timestamp="1616835039891">
+    <state x="421" y="100" key="FileChooserDialogImpl" timestamp="1616997666469">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
-    <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.690@0.0.1280.690" timestamp="1616835039891" />
+    <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.690@0.0.1280.690" timestamp="1616997666469" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1616824924944">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.690@0.0.1280.690" timestamp="1616824924944" />
+    <state x="6" y="28" key="new project wizard" timestamp="1616997654108">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state x="6" y="28" key="new project wizard/0.0.1280.690@0.0.1280.690" timestamp="1616997654108" />
+    <state x="303" y="12" width="672" height="678" key="search.everywhere.popup" timestamp="1617007412505">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state x="303" y="12" width="672" height="678" key="search.everywhere.popup/0.0.1280.690@0.0.1280.690" timestamp="1617007412505" />
   </component>
 </project>
