@@ -74,7 +74,7 @@ const AppDrawer = () => (
     >
         <Application.Screen name='Home' component={HomeScreen} options={{ title: 'Home' }} />
         <Application.Screen name='MyFriendSearch' component={MyFriendSearch} options={{ title: 'My Friends' }}/>
-        <Application.Screen name="DiscoverFriends" component={DiscoverFriends} options={{title: 'Discover' }} />
+        <Application.Screen name='DiscoverFriends' component={DiscoverFriends} options={{title: 'Discover Friends'}} />
     </Application.Navigator>
 )
 
