@@ -37,6 +37,8 @@ const MyFriendSearch = ({navigation}) => {
     const [following, setFollowing] = useState(null);
     const [followerView, setFollowerView] = useState(true);
     
+    // determine if a follow relationship exists between users 
+    // with usernames followerId and followeeId
     const getIsFollowing = async ({followerId, followeeId}) => {
         const res = await API.graphql(graphqlOperation(getFollowRelationship,{
           followeeId: followeeId,
@@ -46,6 +48,7 @@ const MyFriendSearch = ({navigation}) => {
         return res.data.getFollowRelationship !== null
       }
 
+    // list all followers of user with username followeeId
     const listFollowers = async ({followeeId}) => {
         const res = await API.graphql(graphqlOperation(listFollowRelationships, {
             followeeId: followeeId
@@ -54,6 +57,7 @@ const MyFriendSearch = ({navigation}) => {
         return res.data.listFollowRelationships.items !== null
     }
 
+    // list all users that user with followerId is following
     const listFollowing = async ({followerId}) => {
         const res = await API.graphql(graphqlOperation(listFollowRelationships, {
             followeeId: followerId
@@ -62,6 +66,7 @@ const MyFriendSearch = ({navigation}) => {
         return res.data.listFollowRelationships.items !== null
     }
 
+    // current user follows user with username userId
     const follow = async () => {
         console.log('follow')
         const input = {
@@ -74,6 +79,7 @@ const MyFriendSearch = ({navigation}) => {
         console.log(res);
     }
     
+    // current user unfollows user with username userId
     const unfollow = async() => {
         console.log('unfollow');
         const input = {
@@ -86,6 +92,7 @@ const MyFriendSearch = ({navigation}) => {
         console.log(res)
     }
 
+    // initialize state variables
     useEffect(() => {
         const init = async() => {
             const currentUser = await Auth.currentAuthenticatedUser();
