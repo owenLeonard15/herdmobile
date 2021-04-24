@@ -66,11 +66,11 @@ const ResRecommendations = ({navigation}) => {
             setRestaurantList(resArray);
         };
 
-        if (currentUser !== null) {
+        if (currentUser !== null && restaurantList != []) {
             getRecommendations();
         }
 
-    }, [currentUser]);
+    }, [currentUser, restaurantList]);
 
     // list all users
     // filter by String by starts with "searchBy"

@@ -42,11 +42,11 @@ const MyFavRestaurants = ({navigation}) => {
             setRestaurantList(resArray);
         };
 
-        if (currentUser !== null) {
+        if (currentUser !== null && restaurantList != []) {
             getFaveRestaurants();
         }
 
-    }, [currentUser]);
+    }, [currentUser, restaurantList]);
 
     // Fetch favorite restaurants of the current user.
     const getFavsOfCurrentUser = async() => {
