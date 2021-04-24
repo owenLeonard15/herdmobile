@@ -72,6 +72,8 @@ const ResRecommendations = ({navigation}) => {
 
     }, [currentUser]);
 
+    // list all users
+    // filter by String by starts with "searchBy"
     const listAllUsers = async(searchBy) => {
         const currentCreds = await Auth.currentUserCredentials();
 
@@ -85,21 +87,19 @@ const ResRecommendations = ({navigation}) => {
             return;
         }
         var params = {
-            UserPoolId: userPoolId,
+            UserPoolId: userPoolId, /* required */
             AttributesToGet: [
               'email'
-
-            ],
+              /* more items */            ],
             Limit: '20',
             Filter: `username^=\"${searchBy}\"`
           };
 
+          // interact directly with AWS cognito user pool to list all users in the pool
           cognitoidentityserviceprovider.listUsers(params, function(err, data) {
             if (err) console.log(err, err.stack); // an error occurred
-            else{                     // successful response
+            else{
                 setAllUsers(data.Users);
-
-                // Need to set follow relationships here
             }
           });
     }
