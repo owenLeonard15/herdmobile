@@ -70,7 +70,7 @@ const HomeScreen = ({navigation}) => {
         if(currentUser !== null && restaurantList.length !== []){
             updateFaveRestaurants();
         }
-        
+
     }, [currentUser, restaurantList]);
 
 
@@ -116,7 +116,7 @@ const HomeScreen = ({navigation}) => {
               console.error(error);
            });
     }
-    
+
     // Render a restaurant item.
     const renderItem = (item) => {
         // Get image url.
@@ -139,8 +139,8 @@ const HomeScreen = ({navigation}) => {
         const addressRow2 = addressRawList[1];
 
         return (
-            
-            (currentUser !== null && restaurantList != null) ? 
+
+            (currentUser !== null && restaurantList != null) ?
             <View style={{height: 150, width: '100%', alignItems: 'center', flex: 1, flexDirection: 'row', margin: 10, padding: 15, borderBottomColor: 'white', borderBottomWidth: 1}}>
                 <Image source={pic} style={{width: 80, height: 80}}/>
                 <View style={styles.textContainer}>
@@ -151,14 +151,14 @@ const HomeScreen = ({navigation}) => {
                     <Text style={styles.textFont}>{addressRow1}</Text>
                     <Text style={styles.textFont}>{addressRow2}</Text>
                 </View>
-                <View style={{ alignItems: 'center' }}>
+                <View style={{alignItems: 'center'}}>
                     <TouchableOpacity onPress={(e) => handleHeartPress(e, {item})}>
-                        <AntDesign name="heart" size={50} color="#FFC0CB" />
+                        <AntDesign name="heart" size={16} color="#FFC0CB" />
                     </TouchableOpacity>
                 </View>
             </View>
             :  <View style={{height: 150, width: '100%', alignItems: 'center', flex: 1, flexDirection: 'row', margin: 10, padding: 15, borderBottomColor: 'white', borderBottomWidth: 1}}>
-            
+
         </View>
         );
     }
@@ -168,8 +168,6 @@ const HomeScreen = ({navigation}) => {
         setRestaurantState(restaurantState.set(item.item.name, true));
         writeFavRestaurant(item);
     }
-    
-    
 
     return (
         restaurantList.length == 0 ?
@@ -180,7 +178,7 @@ const HomeScreen = ({navigation}) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.topCenter}>
-                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>Recommendations</Text>
+                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>Nearby Restaurants</Text>
             </View>
             <View style={styles.mainContent}>
                 <Text>Loading Restaurant Recommendations ...</Text>
@@ -194,7 +192,7 @@ const HomeScreen = ({navigation}) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.topCenter}>
-                <Text style={{fontSize: 20, fontWeight: 'bold'}}>Recommendations</Text>
+                <Text style={{fontSize: 20, fontWeight: 'bold'}}>Nearby Restaurants</Text>
             </View>
             <SafeAreaView style={styles.mainContent}>
                 <FlatList
@@ -203,7 +201,7 @@ const HomeScreen = ({navigation}) => {
                     renderItem={({item}) => renderItem(item)}
                     keyExtractor={item => item.name}
                 />
-            </SafeAreaView>      
+            </SafeAreaView>
         </View>)
     )
 }
@@ -249,7 +247,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 32,
     },
-  
+
   textContainer: {
     alignItems: 'center',
     flex: 1
