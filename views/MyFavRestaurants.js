@@ -42,7 +42,7 @@ const MyFavRestaurants = ({navigation}) => {
             setRestaurantList(resArray);
         };
 
-        if (currentUser !== null && restaurantList.length !== []) {
+        if (currentUser !== null) {
             getFaveRestaurants();
         }
 

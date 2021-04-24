@@ -28,10 +28,10 @@ const ResRecommendations = ({navigation}) => {
             setAllUsers(listAllUsers(""));
     }, [userPoolId]);
 
-    // Get the favorite restaurant list of the current user.
+    // Get the recommended restaurants for the current user.
     useEffect(() => {
         const getRecommendations = async() => {
-            // Get the favorite restaurants of the current user.
+            // Get the recommended restaurants for the current user.
 
             // Problem:
             // Here is a hard-coded list I made to test if getting
@@ -66,7 +66,7 @@ const ResRecommendations = ({navigation}) => {
             setRestaurantList(resArray);
         };
 
-        if (currentUser !== null && restaurantList.length !== []) {
+        if (currentUser !== null) {
             getRecommendations();
         }
 
