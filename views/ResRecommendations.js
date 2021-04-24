@@ -70,7 +70,7 @@ const ResRecommendations = ({navigation}) => {
             getRecommendations();
         }
 
-    }, [currentUser, restaurantList]);
+    }, [currentUser]);
 
     const listAllUsers = async(searchBy) => {
         const currentCreds = await Auth.currentUserCredentials();
