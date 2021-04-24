@@ -66,7 +66,7 @@ const ResRecommendations = ({navigation}) => {
             setRestaurantList(resArray);
         };
 
-        if (currentUser !== null && restaurantList != []) {
+        if (currentUser !== null) {
             getRecommendations();
         }
 
