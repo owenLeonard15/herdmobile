@@ -41,6 +41,16 @@ const HomeScreen = ({navigation}) => {
             setRestaurantList(resArray);
             console.log("Restaurant list state: ", restaurantList);
 
+        };
+
+        init();
+    }, []);
+
+
+    // Set the fave restaurant list
+    // This useEffect is called every time that currentUser is updated
+    useEffect(() => {
+        const updateFaveRestaurants = async() => {
             // Get the favorite restaurants of the current user.
             const favResList = await getFavsOfCurrentUser();
             let favResSet = new Set();
@@ -49,17 +59,20 @@ const HomeScreen = ({navigation}) => {
             }
 
             // Store if each fetched restaurant is liked in restaurantState.
-            for (var i = 0; i < resArray.length; i++){
-                if (favResSet.has(resArray[i].name)){
-                    setRestaurantState(restaurantState.set(resArray[i].name, true));
+            for (var i = 0; i < restaurantList.length; i++){
+                if (favResSet.has(restaurantList[i].name)){
+                    setRestaurantState(restaurantState.set(restaurantList[i].name, true));
                 }else{
-                    setRestaurantState(restaurantState.set(resArray[i].name, false));
+                    setRestaurantState(restaurantState.set(restaurantList[i].name, false));
                 }
             }
         };
+        if(currentUser !== null && restaurantList.length !== []){
+            updateFaveRestaurants();
+        }
 
-        init();
-    }, []);
+    }, [currentUser, restaurantList]);
+
 
     // Fetch restaurants with Google Places API under the hood.
     const getRestaurantsFromApi = async() => {
@@ -103,7 +116,7 @@ const HomeScreen = ({navigation}) => {
               console.error(error);
            });
     }
-    
+
     // Render a restaurant item.
     const renderItem = (item) => {
         // Get image url.
@@ -126,6 +139,8 @@ const HomeScreen = ({navigation}) => {
         const addressRow2 = addressRawList[1];
 
         return (
+
+            (currentUser !== null && restaurantList != null) ?
             <View style={{height: 150, width: '100%', alignItems: 'center', flex: 1, flexDirection: 'row', margin: 10, padding: 15, borderBottomColor: 'white', borderBottomWidth: 1}}>
                 <Image source={pic} style={{width: 80, height: 80}}/>
                 <View style={styles.textContainer}>
@@ -136,12 +151,15 @@ const HomeScreen = ({navigation}) => {
                     <Text style={styles.textFont}>{addressRow1}</Text>
                     <Text style={styles.textFont}>{addressRow2}</Text>
                 </View>
-                <View style={{ alignItems: 'center' }}>
+                <View style={{alignItems: 'center'}}>
                     <TouchableOpacity onPress={(e) => handleHeartPress(e, {item})}>
-                        <AntDesign name="heart" size={50} color="#FFC0CB" />
+                        <AntDesign name="heart" size={16} color="#FFC0CB" />
                     </TouchableOpacity>
                 </View>
             </View>
+            :  <View style={{height: 150, width: '100%', alignItems: 'center', flex: 1, flexDirection: 'row', margin: 10, padding: 15, borderBottomColor: 'white', borderBottomWidth: 1}}>
+
+        </View>
         );
     }
 
@@ -150,8 +168,6 @@ const HomeScreen = ({navigation}) => {
         setRestaurantState(restaurantState.set(item.item.name, true));
         writeFavRestaurant(item);
     }
-    
-    
 
     return (
         restaurantList.length == 0 ?
@@ -162,7 +178,7 @@ const HomeScreen = ({navigation}) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.topCenter}>
-                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>Recommendations</Text>
+                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>Nearby Restaurants</Text>
             </View>
             <View style={styles.mainContent}>
                 <Text>Loading Restaurant Recommendations ...</Text>
@@ -176,16 +192,16 @@ const HomeScreen = ({navigation}) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.topCenter}>
-                <Text style={{fontSize: 20, fontWeight: 'bold'}}>Recommendations</Text>
+                <Text style={{fontSize: 20, fontWeight: 'bold'}}>Nearby Restaurants</Text>
             </View>
             <SafeAreaView style={styles.mainContent}>
                 <FlatList
                     style={{width: '100%'}}
                     data={restaurantList}
                     renderItem={({item}) => renderItem(item)}
-                    keyExtractor={item => item.title}
+                    keyExtractor={item => item.name}
                 />
-            </SafeAreaView>      
+            </SafeAreaView>
         </View>)
     )
 }
@@ -231,7 +247,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 32,
     },
-  
+
   textContainer: {
     alignItems: 'center',
     flex: 1

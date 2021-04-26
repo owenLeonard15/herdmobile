@@ -17,7 +17,7 @@
     "@react-navigation/stack": "^5.14.3",
     "aws-amplify": "^3.3.21",
     "aws-amplify-react-native": "^4.3.1",
-    "aws-sdk": "^2.879.0",
+    "aws-sdk": "^2.892.0",
     "expo": "~40.0.0",
     "expo-status-bar": "~1.0.3",
     "jest-expo": "^40.0.2",
@@ -38,7 +38,7 @@
     "@babel/core": "~7.9.0"
   },
   "jest": {
-      "preset": "jest-expo"
+    "preset": "jest-expo"
   },
   "private": true
 }

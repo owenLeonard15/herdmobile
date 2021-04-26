@@ -24,7 +24,8 @@ import SignUpScreen from './views/Auth/SignUp';
 import HomeScreen from './views/Home';
 import MyFriendSearch from './views/MyFriendSearch';
 import DiscoverFriends from './views/DiscoverFriends';
-
+import MyFavRestaurants from './views/MyFavRestaurants';
+import ResRecommendations from './views/ResRecommendations';
 
 
 /**
@@ -75,6 +76,8 @@ const AppDrawer = () => (
         <Application.Screen name='Home' component={HomeScreen} options={{ title: 'Home' }} />
         <Application.Screen name='MyFriendSearch' component={MyFriendSearch} options={{ title: 'My Friends' }}/>
         <Application.Screen name='DiscoverFriends' component={DiscoverFriends} options={{title: 'Discover Friends'}} />
+        <Application.Screen name='MyFavRestaurants' component={MyFavRestaurants} options={{title: 'My Favorite Restaurants'}} />
+        <Application.Screen name='ResRecommendations' component={ResRecommendations} options={{title: 'Recommendations'}} />
     </Application.Navigator>
 )
 

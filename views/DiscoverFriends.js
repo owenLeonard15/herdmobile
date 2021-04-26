@@ -12,7 +12,10 @@ import{ createFollowRelationship, deleteFollowRelationship} from '../src/graphql
 import Auth from '@aws-amplify/auth';
 // This is the general AWS javascript SDK, needed to interact directly with the Cognito
 // user pool so that a list of all users can be retrieved
+
 const AWS = require('aws-sdk/dist/aws-sdk-react-native');
+
+
 
 
 const DiscoverFriends = ({navigation}) => {
@@ -44,9 +47,9 @@ const DiscoverFriends = ({navigation}) => {
           followeeId: followeeId,
           followerId: currentUser["username"],
         }));
-        console.log(res)
-        return res.data.getFollowRelationship !== null
-        
+
+        console.log("getIsFollowing: ", res)
+        return true;
     }
 
     // current user follows user with username userId
@@ -59,10 +62,10 @@ const DiscoverFriends = ({navigation}) => {
         }
         const res = await API.graphql(graphqlOperation(createFollowRelationship, {input: input}));
         if(!res.data.createFollowRelationship.erros) setIsFollowing(true);
-        console.log(res);
+        console.log("Follow: ", res);
         return res !== null
     }
-    
+
     // current user unfollows user with username userId
     const unfollow = async(userId) => {
         console.log('unfollow');
@@ -73,7 +76,7 @@ const DiscoverFriends = ({navigation}) => {
         const res = await API.graphql(graphqlOperation(deleteFollowRelationship,{input: input}));
 
         if(!res.data.deleteFollowRelationship.erros) setIsFollowing(false);
-        console.log(res)
+        console.log("Unfollow: ", res)
         return res !== null
     }
 
@@ -95,12 +98,11 @@ const DiscoverFriends = ({navigation}) => {
             UserPoolId: userPoolId, /* required */
             AttributesToGet: [
               'email'
-              /* more items */
-            ],
+              /* more items */            ],
             Limit: '20',
             Filter: `username^=\"${searchBy}\"`
           };
-          
+
           // interact directly with AWS cognito user pool to list all users in the pool
           cognitoidentityserviceprovider.listUsers(params, function(err, data) {
             if (err) console.log(err, err.stack); // an error occurred
@@ -113,7 +115,9 @@ const DiscoverFriends = ({navigation}) => {
                         user["followRelationship"] = resp;
                     });
                 });
-                setAllUsers(data.Users);
+                setAllUsers(userData);
+
+                // Need to set follow relationships here
             }
           });
     }
@@ -139,7 +143,7 @@ const DiscoverFriends = ({navigation}) => {
       );
 
     const renderUserList = ({ item }) => (
-        <Item userId={item["Username"]} following={getIsFollowing(item["Username"])} />
+        <Item userId={item["Username"]} following={false} />
     );
     
 
