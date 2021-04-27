@@ -1,7 +1,6 @@
 {
-<<<<<<< HEAD
   "auth": {
-    "herdmobilead8b5f21": {
+    "herd1f7daf7f": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -9,7 +8,7 @@
     }
   },
   "api": {
-    "herdapi": {
+    "HerdGql": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -17,7 +16,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authherdmobilead8b5f21"
+              "userPoolId": "authherd1f7daf7f"
             }
           },
           "additionalAuthenticationProviders": []
@@ -25,57 +24,4 @@
       }
     }
   }
-=======
-	"auth": {
-		"herdmobilead8b5f21": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [],
-			"customAuth": false
-		}
-	},
-	"api": {
-		"herdmobile": {
-			"service": "AppSync",
-			"providerPlugin": "awscloudformation",
-			"output": {
-				"authConfig": {
-					"defaultAuthentication": {
-						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
-						"userPoolConfig": {
-							"userPoolId": "authherdmobilead8b5f21"
-						}
-					},
-					"additionalAuthenticationProviders": []
-				}
-			}
-		},
-		"api6fb8bdc7": {
-			"service": "API Gateway",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [
-				{
-					"category": "function",
-					"resourceName": "herdmobile8403d72e",
-					"attributes": [
-						"Name",
-						"Arn"
-					]
-				}
-			]
-		}
-	},
-	"function": {
-		"herdmobile8fa8f054": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true
-		},
-		"herdmobile8403d72e": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true
-		}
-	}
->>>>>>> 807e209e77325655eefd8a2024ae938003de60ca
 }

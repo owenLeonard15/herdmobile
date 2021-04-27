@@ -42,13 +42,13 @@ const ResRecommendations = ({navigation}) => {
             // to actually work, and "test[i]"s in the code should
             // all be replaced by the username of the current user
             // whose favorite restaurants we are fetching.
-            var test = ["xingbei"];
+            var test = allUsers;
 
             let resArray = [];
 
             for (var i = 0; i < test.length; i++){
-                if (test[i] != currentUser.username){
-                    const resList = await getFavsOfCurrentUser(test[i]);
+                if (test[i]["Username"] != currentUser.username){
+                    const resList = await getFavsOfCurrentUser(test[i]["Username"]);
 
                     // Here we extract and store only the data that we want to keep from the list of complete objects
                     for (var j = 0; j < resList.length; j++){
@@ -165,7 +165,7 @@ const ResRecommendations = ({navigation}) => {
         return (
 
             (currentUser !== null && restaurantList != null) ?
-            <View style={{height: 150, width: '100%', alignItems: 'center', flex: 1, flexDirection: 'row', margin: 10, padding: 15, borderBottomColor: 'white', borderBottomWidth: 1}}>
+            <View style={{height: 150, width: '100%', alignItems: 'center', flexDirection: 'row', margin: 10, padding: 15, borderBottomColor: 'white', borderBottomWidth: 1}}>
                 <Image source={pic} style={{width: 80, height: 80}}/>
                 <View style={styles.textContainer}>
                     <Text style={{color: '#624630', fontWeight: 'bold'}}>{restaurantName}</Text>

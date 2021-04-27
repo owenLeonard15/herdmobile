@@ -26,6 +26,7 @@ import MyFriendSearch from './views/MyFriendSearch';
 import DiscoverFriends from './views/DiscoverFriends';
 import MyFavRestaurants from './views/MyFavRestaurants';
 import ResRecommendations from './views/ResRecommendations';
+import Profile from './views/Profile';
 
 
 /**
@@ -78,6 +79,7 @@ const AppDrawer = () => (
         <Application.Screen name='DiscoverFriends' component={DiscoverFriends} options={{title: 'Discover Friends'}} />
         <Application.Screen name='MyFavRestaurants' component={MyFavRestaurants} options={{title: 'My Favorite Restaurants'}} />
         <Application.Screen name='ResRecommendations' component={ResRecommendations} options={{title: 'Recommendations'}} />
+        <Application.Screen name='Profile' component={Profile} options={{title: 'Profile'}} /> 
     </Application.Navigator>
 )
 

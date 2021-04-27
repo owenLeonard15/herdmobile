@@ -8,5 +8,5 @@ type FollowRelationship
 {
 	followeeId: ID!
 	followerId: ID!
-	timestamp: Int!
+	timestamp: String!
 }

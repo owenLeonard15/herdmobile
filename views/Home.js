@@ -40,7 +40,7 @@ const HomeScreen = ({navigation}) => {
             }
             setRestaurantList(resArray);
             console.log("Restaurant list state: ", restaurantList);
-
+            
         };
 
         init();
@@ -72,7 +72,6 @@ const HomeScreen = ({navigation}) => {
         }
 
     }, [currentUser, restaurantList]);
-
 
     // Fetch restaurants with Google Places API under the hood.
     const getRestaurantsFromApi = async() => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Keyboard, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
+import { FlatList, Keyboard, SafeAreaView, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons'
 import { TextInput } from 'react-native-gesture-handler';
 
@@ -8,8 +8,8 @@ import { useState, useEffect, useReducer } from 'react';
 import {API, graphqlOperation } from 'aws-amplify';
 import Auth from '@aws-amplify/auth';
 
-import { getFollowRelationship, listFollowRelationships }  from '../src/graphql/queries'
-import { createFollowRelationship, deleteFollowRelationship } from '../src/graphql/mutations';
+import { getFollowRelationship, listFollowRelationships }  from '../graphql/queries'
+import { createFollowRelationship, deleteFollowRelationship } from '../graphql/mutations';
 
 const SUBSCRIPTION = 'SUBSCRIPTION';
 const INITIAL_QUERY = 'INITIAL_QUERY';
@@ -47,42 +47,43 @@ const MyFriendSearch = ({navigation}) => {
       }
 
     const listFollowers = async ({followeeId}) => {
+        console.log("list followers \n")
         const res = await API.graphql(graphqlOperation(listFollowRelationships, {
             followeeId: followeeId
         }));
-        console.log(res.data.listFollowRelationships.items)
-        return res.data.listFollowRelationships.items !== null
+
+        console.log("FOLLOWERS: ", res.data.listFollowRelationships.items)
+        setFollowers(res.data.listFollowRelationships.items)
+        return res.data.listFollowRelationships.items
     }
 
     const listFollowing = async ({followerId}) => {
+        console.log("list following \n")
         const res = await API.graphql(graphqlOperation(listFollowRelationships, {
             followeeId: followerId
         }));
-        console.log(res.data.listFollowRelationships.items)
-        return res.data.listFollowRelationships.items !== null
+        console.log("FOLLOWING", res.data.listFollowRelationships.items)
+        return res.data.listFollowRelationships.items
     }
 
-    const follow = async () => {
+    const follow = async (userId) => {
         console.log('follow')
         const input = {
             followeeId: userId,
             followerId: currentUser.username,
-            timestamp: Date.now(),
+            timestamp: String(Date.now()),
         }
         const res = await API.graphql(graphqlOperation(createFollowRelationship, {input: input}));
-        if(!res.data.createFollowRelationship.erros) setIsFollowing(true);
         console.log(res);
     }
     
-    const unfollow = async() => {
+    const unfollow = async(userId) => {
         console.log('unfollow');
         const input = {
             followeeId: userId,
             followerId: currentUser.username,
         }
         const res = await API.graphql(graphqlOperation(deleteFollowRelationship,{input: input}));
-
-        if(!res.data.deleteFollowRelationship.erros) setIsFollowing(false);
         console.log(res)
     }
 
@@ -100,14 +101,28 @@ const MyFriendSearch = ({navigation}) => {
 
     }, []);
     
-    const Item = ({ title }) => (
+    // render a single user row with username and follow/unfollow button
+    const Item = ({ userId }) => (
         <View style={styles.item}>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title}>{userId}</Text>
+          {/* { userId !== currentUser["Username"] && followerView ?
+            (
+                <TouchableOpacity style={styles.button} onPress={() => unfollow(userId)}>
+                    <Text style={{color: 'white'}}>Unfollow</Text>
+                </TouchableOpacity>
+            ) :
+            (
+                <TouchableOpacity style={styles.button} onPress={() => follow(userId)}>
+                    <Text style={{color: 'white'}}>Follow</Text>
+                </TouchableOpacity>
+            )
+          }
+           */}
         </View>
       );
 
-    const renderItem = ({ item }) => (
-    <Item title={item.title} />
+    const renderUserList = ({ item }) => (
+        <Item userId={item.followeeId} />
     );
 
     return (
@@ -148,21 +163,26 @@ const MyFriendSearch = ({navigation}) => {
                         </TouchableOpacity>
                     </View>) 
                     }
-                    
-                    {followerView ? (
-                        <FlatList
-                            data={followers}
-                            renderItem={renderItem}
-                            keyExtractor={item => item.id}
-                        />
-                    )
-                    : (
-                        <FlatList
-                            data={following}
-                            renderItem={renderItem}
-                            keyExtractor={item => item.id}
-                        />
-                    )}  
+                    <SafeAreaView style={styles.listContent}>
+                    {
+                        (followers !== null || following !== null) ?
+                            followerView ? (
+                                <FlatList
+                                    data={followers}
+                                    renderItem={renderUserList}
+                                    keyExtractor={item => item["timestamp"]}
+                                />
+                            )
+                            : (
+                                <FlatList
+                                    data={following}
+                                    renderItem={renderUserList}
+                                    keyExtractor={item => item["timestamp"]}
+                                />
+                            )  
+                        : <Text>Loading...</Text>
+                    }
+                   </SafeAreaView>
                 </View>
             </View>
         </TouchableWithoutFeedback>
@@ -171,11 +191,39 @@ const MyFriendSearch = ({navigation}) => {
 
 
 const styles = StyleSheet.create({
+    button: {
+        color: 'white',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#00AFB9',
+        height: 40,
+        width: '40%',
+        borderRadius: 5
+    },
         container: {
             flex: 1,
             backgroundColor: '#FED9B7',
             alignItems: 'center',
             justifyContent: 'flex-end'
+        },
+        item: {
+            backgroundColor: '#FDFCDC',
+            padding: 20,
+            marginVertical: 1,
+            marginHorizontal: 0,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end'
+          },
+        listContent: {
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            marginTop: 0,
+            height: '100%',
         },
         mainContent: {
             width: '100%',
@@ -207,6 +255,9 @@ const styles = StyleSheet.create({
             justifyContent: 'space-around',
             alignItems: 'center',
             marginTop: 20
+        }, 
+        title: {
+            fontSize: 32,
         },
         topCenter: {
             display: 'flex',

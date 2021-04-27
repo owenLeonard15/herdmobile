@@ -7,8 +7,8 @@ import { useState, useEffect, useReducer } from 'react';
 
 // Amplify imports
 import {API, graphqlOperation } from 'aws-amplify';
-import {getFollowRelationship } from '../src/graphql/queries';
-import{ createFollowRelationship, deleteFollowRelationship} from '../src/graphql/mutations'
+import {getFollowRelationship } from '../graphql/queries';
+import{ createFollowRelationship, deleteFollowRelationship} from '../graphql/mutations'
 import Auth from '@aws-amplify/auth';
 // This is the general AWS javascript SDK, needed to interact directly with the Cognito
 // user pool so that a list of all users can be retrieved
@@ -22,8 +22,8 @@ const DiscoverFriends = ({navigation}) => {
 
     const [currentUser, setCurrentUser] = useState(null);
     const [allUsers, setAllUsers] = useState(null);
-    const [isFollowing, setIsFollowing] = useState(false);
     const [userPoolId, setUserPoolId] = useState(null);
+    const [followingRelationships, setFollowingRelationships] = useState(null);
 
     // initialize the state variables
     useEffect(() => {
@@ -38,46 +38,48 @@ const DiscoverFriends = ({navigation}) => {
     // Retrieve and set the list of all users
     // Every time userPoolId changes, retrieve the list again
     useEffect(() => {
-        setAllUsers(listAllUsers(""));
+        listAllUsers("");
     }, [userPoolId]);
 
     // retrieve a boolean followRelationship between followee and current user
-    async function getIsFollowing(followeeId){
-        const res = await API.graphql(graphqlOperation(getFollowRelationship,{
-          followeeId: followeeId,
-          followerId: currentUser["username"],
-        }));
-
-        console.log("getIsFollowing: ", res)
-        return true;
-    }
+    const getIsFollowing = async (userId) => {
+        if(userId !== null){
+            const res = await API.graphql(graphqlOperation(getFollowRelationship,{
+                followeeId: userId,
+                followerId: currentUser.username,
+              }));
+              console.log("Getting follow relationship: ", res.data.getFollowRelationship !== null)
+              return (res.data.getFollowRelationship !== null)
+        }
+      }
 
     // current user follows user with username userId
     const follow = async (userId) => {
-        console.log('follow')
-        const input = {
-            followeeId: userId,
-            followerId: currentUser.username,
-            timestamp: Date.now(),
+        if(userId !== null){
+            console.log('follow')
+            const input = {
+              followeeId: userId,
+              followerId: currentUser.username,
+              timestamp: String(Date.now()),
+            }
+            const res = await API.graphql(graphqlOperation(createFollowRelationship, {input: input}));
+            listAllUsers("")
+            console.log(res);
         }
-        const res = await API.graphql(graphqlOperation(createFollowRelationship, {input: input}));
-        if(!res.data.createFollowRelationship.erros) setIsFollowing(true);
-        console.log("Follow: ", res);
-        return res !== null
-    }
+      }
 
     // current user unfollows user with username userId
     const unfollow = async(userId) => {
-        console.log('unfollow');
-        const input = {
-            followeeId: userId,
-            followerId: currentUser.username,
-        }
-        const res = await API.graphql(graphqlOperation(deleteFollowRelationship,{input: input}));
-
-        if(!res.data.deleteFollowRelationship.erros) setIsFollowing(false);
-        console.log("Unfollow: ", res)
-        return res !== null
+        if(userId !== null){
+            console.log('unfollow: ', userId);
+            const input = {
+                followeeId: userId,
+                followerId: currentUser.username,
+            }
+            const res = await API.graphql(graphqlOperation(deleteFollowRelationship,{input: input}));
+            listAllUsers("")
+            return res !== null
+        }  
     }
 
     // list all users
@@ -110,17 +112,17 @@ const DiscoverFriends = ({navigation}) => {
                 // Retrieve and set follow relationships for all users
                 let userData = data.Users;
                 userData.forEach(user => {
-                    getIsFollowing(user["username"])
-                    .then(resp => {
-                        user["followRelationship"] = resp;
-                    });
-                });
-                setAllUsers(userData);
-
-                // Need to set follow relationships here
+                    getIsFollowing(user["Username"]).then(isFollowing => {
+                        user.isFollowing = isFollowing;
+                        console.log(user.isFollowing)
+                    }).then(() => setAllUsers(userData))
+                })
+            
             }
           });
     }
+
+
 
     // render a single user row with username and follow/unfollow button
     const Item = ({ userId, following }) => (
@@ -143,7 +145,7 @@ const DiscoverFriends = ({navigation}) => {
       );
 
     const renderUserList = ({ item }) => (
-        <Item userId={item["Username"]} following={false} />
+        <Item userId={item.Username} following={item.isFollowing} />
     );
     
 
@@ -168,11 +170,16 @@ const DiscoverFriends = ({navigation}) => {
                         />
                     </View>
                     <SafeAreaView style={styles.listContent}>
-                        <FlatList
+                        {
+                            allUsers != null ?
+                            <FlatList
                             data={allUsers}
                             renderItem={renderUserList}
                             keyExtractor={item => item["Username"]}
                         />
+                            : null
+                        }
+                        
                     </SafeAreaView> 
                 </View>
             </View>
