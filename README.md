@@ -6,7 +6,7 @@ Herd is a restaurant recommendation app that relies on a social network of users
 # Framework
 Since the application needs to be mobile, the front end framework needs to provide mobile development and deployment capabilities. React Native is an open-source framework designed to enable developers to use the React framework in a native, mobile context. This includes iOS and Android platforms and, therefore, the mobile technical requirement. Furthermore, due to its resemblance to the web application framework, it provides the additional advantage of having a shorter typical learning curve for developers than traditional native languages. 
 
-![alt text](https://xingbei-image-storer.s3.us-east-2.amazonaws.com/final_architecture.png)
+![alt text](/final_architecture.png)
 
 The above diagram shows the overall system design of the application. The previously discussed React Native component interacts with multiple AWS services managed by AWS Amplify. Amplify is a service which provides the ability to build scalable, configurable backend services quickly and seamlessly connect them to the frontend. These characteristics make it possible to integrate multiple different technical components that are necessary for the core functionality of the application. 
 
